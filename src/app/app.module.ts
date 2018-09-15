@@ -11,9 +11,10 @@ import { Geolocation } from "@ionic-native/geolocation";
 import { NativeGeocoder } from "@ionic-native/native-geocoder";
 
 import { ActivityPage } from "../pages/activity/activity";
+import { WelcomePage } from "../pages/welcome/welcome";
 
 @NgModule({
-  declarations: [MyApp, HomePage, ActivityPage, LoginPage],
+  declarations: [MyApp, HomePage, ActivityPage, LoginPage, WelcomePage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
@@ -21,7 +22,7 @@ import { ActivityPage } from "../pages/activity/activity";
     })
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ActivityPage, LoginPage],
+  entryComponents: [MyApp, HomePage, ActivityPage, WelcomePage, LoginPage],
   providers: [
     StatusBar,
     SplashScreen,

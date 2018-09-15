@@ -7,12 +7,66 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ActivityPage</ion-title>
+    <ion-title>Activity Page</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content class="activity">
+  <ion-card style="height: 400px;background: #cdffce;
+  ">
+    <ion-card-header>
+      Daily Recommendations for your crop
+    </ion-card-header>
+    <ion-card-content>
+      <ion-slides>
+        <ion-slide pager spaceBetween=100 slidesPerView="1">
+          <img src="https://pbs.twimg.com/media/C91QPh7VoAIVOTg.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img src="https://pbs.twimg.com/media/C91QPh7VoAIVOTg.jpg" alt="">
+        </ion-slide>
+        <ion-slide>
+          <img src="https://pbs.twimg.com/media/C91QPh7VoAIVOTg.jpg" alt="">
+        </ion-slide>
+      </ion-slides>
+    </ion-card-content>
+    <ion-row class="cardfooter">
+      <ion-col>
+        <div style="width: 100% !important; border-top: 1px solid black; display: flex; flex-direction: row;">
+          <ion-icon name="ios-thumbs-up-outline" *ngIf="!isThumbsUp" (click)="isThumbsUp = !isThumbsUp">
+          </ion-icon>
+          <ion-icon name="ios-thumbs-down-outline" *ngIf="!isThumbsDown" (click)="isThumbsDown = !isThumbsDown"></ion-icon>
+          <ion-icon name="ios-thumbs-down" *ngIf="isThumbsDown"></ion-icon>
+
+          <ion-icon name="ios-thumbs-up" *ngIf="isThumbsUp"></ion-icon>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-card>
+  <!-- <ion-item-group *ngFor="let group of events | groupBy: 'date'">
+    <ion-item-divider color="light">
+      {{ group.key }}
+    </ion-item-divider>
+    <ion-item *ngFor="let event of group.list">{{ event.title }}</ion-item>
+  </ion-item-group>
+ -->
+  <ion-scroll scrollX="true">
+    <button class="scroll-btn" ion-button fixed>NO</button>
+    <button class="scroll-btn" ion-button fixed>NO</button>
+    <button class="scroll-btn" ion-button fixed>NO</button>
+    <button class="scroll-btn" ion-button fixed>NO</button>
+
+  </ion-scroll>
+
+  <ion-footer style="background:#51cfb1;">
+    <ion-toolbar transparent>
+      <ion-searchbar placeholder="Type a Message" animated=true [(ngModel)]="myInput" [showCancelButton]=true>
+      </ion-searchbar>
+
+    </ion-toolbar>
+  </ion-footer>
+
 
 </ion-content>
