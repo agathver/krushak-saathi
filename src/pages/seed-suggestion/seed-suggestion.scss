@@ -1,0 +1,95 @@
+page-seed-suggestion {
+  .item-avatar,
+  .item-avatar .item-content,
+  .item-avatar-left,
+  .item-avatar-left .item-content {
+    min-height: 72px;
+  }
+  .card-header,
+  .card-header-md {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: #488aff;
+    font-size: 1.8rem;
+    font-weight: 500;
+    padding: 16px;
+  }
+  .item,
+  .item h1,
+  .item h2,
+  .item h3,
+  .item h4,
+  .item h5,
+  .item h6,
+  .item p,
+  .item-content,
+  .item-content h1,
+  .item-content h2,
+  .item-content h3,
+  .item-content h4,
+  .item-content h5,
+  .item-content h6,
+  .item-content p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .item-files {
+    width: 100%;
+    display: inline-block;
+    position: relative;
+  }
+
+  .col {
+    padding: 0px !important;
+  }
+
+  .card .item:first-child,
+  .list-inset .item:first-child,
+  .padding > .list .item:first-child {
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+  }
+  .card .item:first-child {
+    border-top: 0;
+  }
+  .card .item,
+  .list-inset .item,
+  .padding > .list .item,
+  .padding-horizontal > .list .item {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  .card .item {
+    border-left: 0;
+    border-right: 0;
+  }
+
+  .item p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  ion-icon {
+    font-size: 1.8em;
+  }
+
+  .ion-md-add {
+    position: relative;
+
+    bottom: 2 !important;
+  }
+  item-avatar {
+    border: 1px solid black;
+    box-shadow: #666 1px;
+  }
+  .seed-page {
+    background: #56ca96;
+  }
+  .card-ios {
+    margin: 6px !important;
+  }
+}

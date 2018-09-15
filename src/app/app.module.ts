@@ -9,12 +9,14 @@ import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { Geolocation } from "@ionic-native/geolocation";
 import { NativeGeocoder } from "@ionic-native/native-geocoder";
+import { LaunchNavigator } from "@ionic-native/launch-navigator";
 
 import { ActivityPage } from "../pages/activity/activity";
-import { WelcomePage } from "../pages/welcome/welcome";
+// import { WelcomePage } from "../pages/welcome/welcome";
+import { SeedSuggestionPage } from "../pages/seed-suggestion/seed-suggestion";
 
 @NgModule({
-  declarations: [MyApp, HomePage, ActivityPage, LoginPage, WelcomePage],
+  declarations: [MyApp, HomePage, ActivityPage, LoginPage, SeedSuggestionPage],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
@@ -22,12 +24,19 @@ import { WelcomePage } from "../pages/welcome/welcome";
     })
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ActivityPage, WelcomePage, LoginPage],
+  entryComponents: [
+    MyApp,
+    HomePage,
+    ActivityPage,
+    LoginPage,
+    SeedSuggestionPage
+  ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
     NativeGeocoder,
+    LaunchNavigator,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

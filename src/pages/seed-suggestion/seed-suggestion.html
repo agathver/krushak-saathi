@@ -1,0 +1,51 @@
+<!--
+  Generated template for the SeedSuggestionPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Seed Suggestion</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="seed-page">
+
+  <div>
+    <div style="margin-left:40px; padding: 20px; font-size:2.3rem;">Choose a store</div>
+    <div class="item item-avatar" *ngFor="let seed of seedlocations; let i = index">
+      <ion-card>
+        <ion-card-content>
+          <ion-grid (click)="navigate(seed.coords.lat, seed.coords.long)">
+            <ion-row>
+              <ion-col col-1>
+                <ion-icon name="navigate" class="icon-location"></ion-icon>
+              </ion-col>
+              <ion-col col-1></ion-col>
+              <ion-col col-9>
+                <h2>{{ seed.name }}</h2>
+              </ion-col>
+              <ion-col class="checkbox-col" col-1>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col col-2></ion-col>
+              <ion-col col-4>
+                <p>Info:</p>
+              </ion-col>
+              <ion-col col-1></ion-col>
+              <ion-col col-5>
+                <p>Rating:{{ seed.rating }}</p>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>
