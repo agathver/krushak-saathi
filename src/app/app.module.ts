@@ -11,21 +11,38 @@ import { Geolocation } from "@ionic-native/geolocation";
 
 import { ActivityPage } from "../pages/activity/activity";
 
+import { CurrentWeatherComponent } from '../components/current-weather/current-weather';
+import { WeatherProvider } from '../providers/weather/weather';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
-  declarations: [MyApp, HomePage, ActivityPage, LoginPage],
+  declarations: [
+    MyApp,
+    HomePage,
+    ActivityPage,
+    LoginPage,
+    CurrentWeatherComponent,
+  ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp, {
-      mode: "ios"
-    })
+      mode: 'ios'
+    }),
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
-  entryComponents: [MyApp, HomePage, ActivityPage, LoginPage],
+  entryComponents: [
+    MyApp,
+    HomePage,
+    ActivityPage,
+    LoginPage
+  ],
   providers: [
     StatusBar,
     SplashScreen,
     Geolocation,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    WeatherProvider
   ]
 })
-export class AppModule {}
+export class AppModule { }
