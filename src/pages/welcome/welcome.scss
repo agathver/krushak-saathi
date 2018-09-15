@@ -1,0 +1,53 @@
+page-welcome {
+  .welcome-page {
+    background: #56ca96;
+    display: flex;
+    flex-direction: column;
+  }
+  h1 {
+    position: absolute;
+    top: 30%;
+    left: 34%;
+    color: #fff;
+  }
+
+  h3 {
+    position: absolute;
+    top: 40%;
+    left: 28%;
+    color: #fff;
+  }
+
+  .language-btn {
+    position: absolute;
+    top: 50%;
+    background: #51cfb1;
+    border-radius: 30px !important;
+    border: 1px solid #ffffff;
+    width: calc(100% * (1 / 2) - 10px - 1px);
+  }
+
+  .hindi {
+    left: 50%;
+  }
+  .english {
+    top: 50%;
+  }
+  .bangle {
+    top: 60%;
+  }
+  .odisha {
+    top: 60%;
+    left: 50%;
+  }
+  .next-btn {
+    background: #51cfb1;
+    border-radius: 100% !important;
+    border: 1px solid #ffffff;
+    height: 70px;
+    width: 70px !important;
+    position: absolute;
+    top: 70%;
+    left: 40%;
+  }
+}

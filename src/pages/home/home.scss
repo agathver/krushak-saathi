@@ -1,5 +1,48 @@
 page-home {
-  .language-selection {
+  ion-content {
+    background-color: #56ca96 !important;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .wel {
+    align-content: center;
+    color: white;
+    padding: 10px;
+    h1 {
+      margin-left: 30%;
+    }
+    h2 {
+      margin-left: 21%;
+    }
+  }
+
+  .language-selection,
+  .logo-container {
     text-align: center;
+
+    h1 {
+      color: #fff;
+    }
+
+    .lang-btn {
+      background: #51cfb1;
+      border-radius: 30px !important;
+      border: 1px solid #ffffff;
+      padding-left: 2em;
+      padding-right: 2em;
+      // width: calc(100% * (1 / 2) - 10px - 1px);
+    }
+
+    .next-btn {
+      background: #51cfb1;
+      border-radius: 100% !important;
+      border: 1px solid #ffffff;
+      height: 70px;
+      width: 70px !important;
+      position: absolute;
+      top: 70%;
+      left: 40%;
+    }
   }
 }
