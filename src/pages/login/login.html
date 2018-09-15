@@ -30,26 +30,29 @@
   </ion-item>
   <ion-item>
     <ion-label floating>Location</ion-label>
-    <ion-input type="text"></ion-input>
+    <ion-input type="text" [(ngModel)]="location"></ion-input>
   </ion-item>
-
-  <ion-item>
-    <ion-label>Land</ion-label>
-    <ion-input type="Text"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-slides>
-      <ion-slide>
-        <h1>Slide 1</h1>
-      </ion-slide>
-      <ion-slide>
-        <h1>Slide 2</h1>
-      </ion-slide>
-      <ion-slide>
-        <h1>Slide 3</h1>
-      </ion-slide>
-    </ion-slides>
-  </ion-item>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col col-8>
+        <ion-item>
+          <ion-label floating>Land</ion-label>
+          <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-col col-4>
+          <ion-item>
+            <ion-label>Size</ion-label>
+            <ion-select [(ngModel)]="size">
+              <ion-option value="acre">Acre</ion-option>
+              <ion-option value="hectare">Hectare</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <button (click)="openActivity()" ion-button fixed style="width: 100%;
+  "> Get Started
+  </button>
 
 </ion-content>

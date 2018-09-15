@@ -1,10 +1,74 @@
-<ion-content padding>
-  <p>
-    Hi,<br />
-    I'm Laxmi. Your krushak saathi.
-  </p>
-  <button ion-button (click)="login()"> Login </button>
-  <div>
-    <button (click)="openActivity()" ion-button color="secondary">Get Started!</button>
-  </div>
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Login</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content class="login-content">
+  <ion-grid>
+    <ion-row class="logo-row">
+      <ion-col></ion-col>
+      <ion-col width-67>
+        <img src="https://lh3.googleusercontent.com/U9kSLw_2drEjEKcg4fJjZXkv5dGLZHUQvgX-A4EUZvwRGbl12ODLA0Xb9iHKR4IGaw=s180-rw" />
+      </ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-list inset>
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Name</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Select Crops</ion-label>
+            <ion-select [(ngModel)]="crops" multiple="true">
+              <ion-option>Wheat</ion-option>
+              <ion-option>Rice</ion-option>
+              <ion-option>Maize</ion-option>
+              <ion-option>Paddy</ion-option>
+            </ion-select>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-item>
+            <ion-label>Location</ion-label>
+            <ion-input type="text" [(ngModel)]="location"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-item>
+            <ion-label>Land</ion-label>
+            <ion-input type="text"></ion-input>
+          </ion-item>
+          <ion-col col-6>
+            <ion-item>
+              <ion-label>Size</ion-label>
+              <ion-select [(ngModel)]="size">
+                <ion-option value="acre">Acre</ion-option>
+                <ion-option value="hectare">Hectare</ion-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+  <button class="submit-btn" (click)="openActivity()" ion-button full> Get Started
+  </button>
+
 </ion-content>

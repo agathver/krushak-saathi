@@ -8,6 +8,7 @@ import { MyApp } from "./app.component";
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { Geolocation } from "@ionic-native/geolocation";
+import { NativeGeocoder } from "@ionic-native/native-geocoder";
 
 import { ActivityPage } from "../pages/activity/activity";
 
@@ -25,6 +26,7 @@ import { ActivityPage } from "../pages/activity/activity";
     StatusBar,
     SplashScreen,
     Geolocation,
+    NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
