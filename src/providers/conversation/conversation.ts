@@ -1,9 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 
-interface IPrompt {
-  title:string,
-  callback: (response:string) => void
+export interface Choice {
+  title: string,
+  value: string,
+}
+
+export interface IPrompt {
+  type: 'question' | 'user-response' | 'choice';
+  title:string;
+  callback?: (response:string) => void;
+  choices?: Choice[];
 }
 
 @Injectable()
@@ -13,14 +20,32 @@ export class ConversationController {
 
   prompts$: Subject<IPrompt>;
 
-  prompt(title:string, callback:(x:string) => void) {
+  constructor() {
+    this.prompts$ = new Subject<IPrompt>();
+  }
+
+  prompt(title:string, callback?:(x:string) => void) {
     this.prompts$.next({
+      type: 'question',
       title,
       callback
     });
   }
 
+  choice(title, choices:Choice[]) {
+    this.prompts$.next({
+      type: 'choice',
+      title,
+      choices
+    })
+  }
+
+  question(query) {
+    //
+  }
+
   // ready() {
 
   // }
+
 }

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { ConversationController } from '../../providers/conversation/conversation';
+import { ConversationController, IPrompt } from '../../providers/conversation/conversation';
+import { UserProvider } from '../../providers/user/user';
 
 /**
  * Generated class for the ActivityPage page.
@@ -15,19 +16,40 @@ import { ConversationController } from '../../providers/conversation/conversatio
 })
 export class ActivityPage {
 
+  activities: IPrompt[] = [];
+  currentPrompt: IPrompt = null;
 
-
-  constructor(private conversationCtrl:ConversationController) {
+  constructor(
+    private conversationCtrl:ConversationController,
+    private userProvider:UserProvider) {
   }
 
   ngOnInit() {
-    this.conversationCtrl.prompts$.subscribe(p => {
-
-    });
+    this.conversationCtrl.prompts$.subscribe(p => this.activities.push(p));
   }
 
   ionViewDidLoad() {
+    // start dialog
 
+    setTimeout(() => {
+      this.conversationCtrl.prompt('Hi!');
+
+      setTimeout(() => {
+      this.conversationCtrl.choice('I am Laxmi, your Krushak Saathi.',
+        [{ title: "Let's start", value: 'start'}]
+      );
+      }, 1000);
+    }, 1000);
+
+
+  }
+
+  onSend() {
+    if(this.currentPrompt) {
+      this.currentPrompt.callback('response');
+    } else {
+      this.conversationCtrl.question('response');
+    }
   }
 
 }

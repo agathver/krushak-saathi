@@ -1,6 +1,6 @@
 import { BrowserModule } from "@angular/platform-browser";
 import { ErrorHandler, NgModule } from "@angular/core";
-import { IonicApp, IonicErrorHandler, IonicModule } from "ionic-angular";
+import { IonicApp, IonicErrorHandler, IonicModule, Button } from "ionic-angular";
 import { SplashScreen } from "@ionic-native/splash-screen";
 import { StatusBar } from "@ionic-native/status-bar";
 
@@ -18,6 +18,8 @@ import { CurrentWeatherComponent } from '../components/current-weather/current-w
 import { WeatherProvider } from '../providers/weather/weather';
 import { HttpClientModule } from '@angular/common/http';
 import { ConversationController } from "../providers/conversation/conversation";
+import { FixedChoiceQuestionComponent } from "../components/fixed-choice-question/fixed-choice-question";
+import { ButtonGroupComponent } from "../components/button-group/button-group";
 
 
 @NgModule({
@@ -27,6 +29,8 @@ import { ConversationController } from "../providers/conversation/conversation";
     ActivityPage,
     LoginPage,
     CurrentWeatherComponent,
+    ButtonGroupComponent,
+    FixedChoiceQuestionComponent
   ],
   imports: [
     BrowserModule,
