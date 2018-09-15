@@ -3,6 +3,8 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ConversationController, IPrompt } from '../../providers/conversation/conversation';
 import { UserProvider } from '../../providers/user/user';
 import { LoginPage } from '../login/login';
+import { CropChecklistProvider } from '../../providers/crop-checklist/crop-checklist';
+import { CropSuggestionProvider } from '../../providers/crop-suggestion/crop-suggestion';
 
 /**
  * Generated class for the ActivityPage page.
@@ -25,6 +27,8 @@ export class ActivityPage {
   constructor(
     private navCtrl: NavController,
     private conversationCtrl: ConversationController,
+    private cropChecklist:CropChecklistProvider,
+    private suggestions:CropSuggestionProvider,
     private userProvider: UserProvider) {
   }
 
@@ -41,6 +45,8 @@ export class ActivityPage {
     const user = await this.userProvider.currentUser();
     if (!user) {
       this.loginDialog();
+    } else {
+      this.cropStatus();
     }
   }
 
@@ -91,6 +97,44 @@ export class ActivityPage {
       name,
       landSize,
       crops
-    })
+    });
+
+    this.conversationCtrl.clear();
+
+    this.cropStatus();
+  }
+
+  async cropStatus() {
+    if(await this.cropChecklist.currentCrop()) {
+      const nextTask = await this.cropChecklist.getLastestItem();
+    } else {
+      this.cropChooser();
+    }
+  }
+
+  async cropChooser() {
+    const suggestedCrops = this.suggestions.cropSuggestions().map(x => ({
+      title: x.name,
+      value: x.id
+    }));
+
+    const choosenCrop = await this.conversationCtrl.choice('Choose a crop for cultivation', suggestedCrops);
+    return this.seedVendor(choosenCrop);
+  }
+
+  async seedVendor(choosenCrop) {
+    const vendors = this.suggestions.seedVendorSuggestion(choosenCrop);
+
+    const response = await this.conversationCtrl.choice(`We have ${vendors.length} seed vendors near your area.`,
+    [
+      {
+        title: 'Show vendors',
+        value: 'vendors'
+      },
+      {
+        title: 'I have procured the seeds',
+        value: 'dismiss'
+      },
+    ]);
   }
 }

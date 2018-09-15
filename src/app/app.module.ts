@@ -20,6 +20,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { ConversationController } from "../providers/conversation/conversation";
 import { FixedChoiceQuestionComponent } from "../components/fixed-choice-question/fixed-choice-question";
 import { ButtonGroupComponent } from "../components/button-group/button-group";
+import { CropSuggestionProvider } from '../providers/crop-suggestion/crop-suggestion';
+import { CropChecklistProvider } from '../providers/crop-checklist/crop-checklist';
 
 
 @NgModule({
@@ -55,7 +57,9 @@ import { ButtonGroupComponent } from "../components/button-group/button-group";
     NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserProvider,
-    ConversationController
+    ConversationController,
+    CropSuggestionProvider,
+    CropChecklistProvider
   ]
 })
 export class AppModule { }
