@@ -25,6 +25,7 @@ export class FixedChoiceQuestionComponent {
 
   selectionChanged(selection) {
     console.log(selection);
+    this.reply.emit(selection);
   }
 
 }

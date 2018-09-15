@@ -9,7 +9,7 @@ export interface Choice {
 export interface IPrompt {
   type: 'question' | 'user-response' | 'choice';
   title:string;
-  callback?: (response:string) => void;
+  callback?: (response?:string) => any;
   choices?: Choice[];
 }
 
@@ -32,11 +32,12 @@ export class ConversationController {
     });
   }
 
-  choice(title, choices:Choice[]) {
+  choice(title, choices:Choice[], callback?:(x:string) => void) {
     this.prompts$.next({
       type: 'choice',
       title,
-      choices
+      choices,
+      callback
     })
   }
 

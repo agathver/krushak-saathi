@@ -7,7 +7,7 @@
       <div *ngSwitchCase="'user-response'">
         <p ion-text color="gray" class="response">{{ activity.title }}</p>
       </div>
-      <fixed-choice-question [title]="activity.title" [choices]="activity.choices" *ngSwitchCase="'choice'"></fixed-choice-question>
+      <fixed-choice-question (reply)="activity.callback($event)" [title]="activity.title" [choices]="activity.choices" *ngSwitchCase="'choice'"></fixed-choice-question>
     </div>
   </div>
   <div class="activity-input">

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { ConversationController, IPrompt } from '../../providers/conversation/conversation';
 import { UserProvider } from '../../providers/user/user';
+import { LoginPage } from '../login/login';
 
 /**
  * Generated class for the ActivityPage page.
@@ -20,6 +21,7 @@ export class ActivityPage {
   currentPrompt: IPrompt = null;
 
   constructor(
+    private navCtrl:NavController,
     private conversationCtrl:ConversationController,
     private userProvider:UserProvider) {
   }
@@ -35,8 +37,15 @@ export class ActivityPage {
       this.conversationCtrl.prompt('Hi!');
 
       setTimeout(() => {
-      this.conversationCtrl.choice('I am Laxmi, your Krushak Saathi.',
-        [{ title: "Let's start", value: 'start'}]
+      this.conversationCtrl.choice(
+        'I am Laxmi, your Krushak Saathi.',
+        [{
+          title: "Let's start",
+          value: 'start',
+        }],
+        _ => {
+          this.navCtrl.setRoot(LoginPage);
+        }
       );
       }, 1000);
     }, 1000);
