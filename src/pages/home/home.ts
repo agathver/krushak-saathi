@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { NavController, ModalController } from "ionic-angular";
 import { LoginPage } from "../login/login";
+import { ActivityPage } from "../activity/activity";
 
 @Component({
   selector: "page-home",
@@ -14,5 +15,9 @@ export class HomePage {
   login() {
     let loginpage = this.modalCtrl.create(LoginPage);
     loginpage.present();
+  }
+
+  openActivity() {
+    this.navCtrl.setRoot(ActivityPage);
   }
 }
