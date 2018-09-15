@@ -8,8 +8,11 @@ import { MyApp } from "./app.component";
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
 import { Geolocation } from "@ionic-native/geolocation";
+import { NativeGeocoder } from "@ionic-native/native-geocoder";
 
 import { ActivityPage } from "../pages/activity/activity";
+import { UserProvider } from '../providers/user/user';
+import { IonicStorageModule } from "@ionic/storage";
 
 import { CurrentWeatherComponent } from '../components/current-weather/current-weather';
 import { WeatherProvider } from '../providers/weather/weather';
@@ -28,7 +31,8 @@ import { HttpClientModule } from '@angular/common/http';
     IonicModule.forRoot(MyApp, {
       mode: 'ios'
     }),
-    HttpClientModule
+    HttpClientModule,
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,8 +45,10 @@ import { HttpClientModule } from '@angular/common/http';
     StatusBar,
     SplashScreen,
     Geolocation,
+    WeatherProvider,
+    NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    WeatherProvider
+    UserProvider
   ]
 })
 export class AppModule { }

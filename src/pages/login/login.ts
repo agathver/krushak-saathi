@@ -1,26 +1,72 @@
-import { Component, ViewChild } from "@angular/core";
-import { IonicPage, NavController, NavParams,Slides  } from "ionic-angular";
+import { Component } from "@angular/core";
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController
+} from "ionic-angular";
+import { Geolocation } from "@ionic-native/geolocation";
+import {
+  NativeGeocoder,
+  NativeGeocoderReverseResult,
+  NativeGeocoderOptions
+} from "@ionic-native/native-geocoder";
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { ActivityPage } from "../activity/activity";
+import { UserProvider } from "../../providers/user/user";
 
-@IonicPage()
 @Component({
   selector: "page-login",
-  templateUrl: "login.html"
+  templateUrl: "login.html",
 })
 export class LoginPage {
-  @ViewChild(Slides) slides: Slides;
-
   crops: any;
+  latitude: any;
+  longitude: any;
+  location: string;
+  options: NativeGeocoderOptions;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {}
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public modalCtrl: ModalController,
+    private geolocation: Geolocation,
+    private nativeGeocoder: NativeGeocoder,
+    private userProvider: UserProvider
+  ) {
+    this.options = {
+      useLocale: true,
+      maxResults: 5
+    };
+  }
+
+  getLocation() {
+    this.geolocation
+      .getCurrentPosition()
+      .then(resp => {
+        this.latitude = resp.coords.latitude;
+        this.longitude = resp.coords.longitude;
+      })
+      .then(() => {
+        this.nativeGeocoder
+          .reverseGeocode(this.latitude, this.longitude, this.options)
+          .then((result: NativeGeocoderReverseResult[]) => {
+            console.log(JSON.stringify(result[0]));
+            this.location = JSON.stringify(result[0]);
+          })
+          .catch((error: any) => console.log(error));
+      })
+      .catch(error => {
+        console.log("Error getting location", error);
+      });
+  }
+  openActivity() {
+    let activity = this.modalCtrl.create(ActivityPage);
+    activity.present();
+  }
 
   ionViewDidLoad() {
     console.log("ionViewDidLoad LoginPage");
+    this.getLocation();
   }
 }
