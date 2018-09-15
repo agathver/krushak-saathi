@@ -1,0 +1,7 @@
+{
+  "name": "krushak-saathi",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
