@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { ConversationController } from '../../providers/conversation/conversation';
 
 /**
  * Generated class for the ActivityPage page.
@@ -14,11 +15,19 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class ActivityPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+
+
+  constructor(private conversationCtrl:ConversationController) {
+  }
+
+  ngOnInit() {
+    this.conversationCtrl.prompts$.subscribe(p => {
+
+    });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ActivityPage');
+
   }
 
 }

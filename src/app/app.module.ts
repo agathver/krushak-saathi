@@ -17,6 +17,8 @@ import { IonicStorageModule } from "@ionic/storage";
 import { CurrentWeatherComponent } from '../components/current-weather/current-weather';
 import { WeatherProvider } from '../providers/weather/weather';
 import { HttpClientModule } from '@angular/common/http';
+import { ConversationController } from "../providers/conversation/conversation";
+
 
 @NgModule({
   declarations: [
@@ -48,7 +50,8 @@ import { HttpClientModule } from '@angular/common/http';
     WeatherProvider,
     NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    UserProvider
+    UserProvider,
+    ConversationController
   ]
 })
 export class AppModule { }
