@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
+import { empty } from 'rxjs/observable/empty';
 
 export interface Choice {
   title: string,
@@ -7,9 +8,9 @@ export interface Choice {
 }
 
 export interface IPrompt {
-  type: 'question' | 'user-response' | 'choice';
-  title:string;
-  callback?: (response?:string) => any;
+  type: 'response' | 'question' | 'user-response' | 'choice';
+  text: string;
+  callback?: (response?: string) => any;
   choices?: Choice[];
 }
 
@@ -20,29 +21,48 @@ export class ConversationController {
 
   prompts$: Subject<IPrompt>;
 
+  clear$: Subject<{}>;
+
   constructor() {
     this.prompts$ = new Subject<IPrompt>();
+    this.clear$ = new Subject<{}>();
   }
 
-  prompt(title:string, callback?:(x:string) => void) {
+  response(text: string) {
     this.prompts$.next({
-      type: 'question',
-      title,
-      callback
-    });
-  }
-
-  choice(title, choices:Choice[], callback?:(x:string) => void) {
-    this.prompts$.next({
-      type: 'choice',
-      title,
-      choices,
-      callback
+      type: 'response',
+      text
     })
+  }
+
+  prompt(text: string): Promise<string> {
+    return new Promise<string>(resolve => {
+      this.prompts$.next({
+        type: 'question',
+        text,
+        callback: resolve
+      });
+    });
+
+  }
+
+  choice(text, choices: Choice[]): Promise<string> {
+    return new Promise(resolve => {
+      this.prompts$.next({
+        type: 'choice',
+        text,
+        choices,
+        callback: resolve
+      });
+    });
   }
 
   question(query) {
     //
+  }
+
+  clear() {
+    this.clear$.next(empty());
   }
 
   // ready() {

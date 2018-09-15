@@ -24,4 +24,8 @@ export class UserProvider {
     return this.storage.set(USER_KEY, data);
   }
 
+  register(data) {
+    return this.login(data);
+  }
+
 }

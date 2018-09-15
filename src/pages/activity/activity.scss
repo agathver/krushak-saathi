@@ -8,4 +8,34 @@ page-activity {
   .user-response {
 
   }
+
+  .page-wrapper {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .activity-frame {
+      padding: 1em;
+      flex-grow: 1;
+    }
+  }
+
+  .input-wrapper {
+    align-items: center;
+    border-top: 1px solid #f2f2f2;
+    padding: 1em;
+
+    input {
+      border: none;
+      outline: none;
+      background: transparent;
+      flex-grow: 1;
+    }
+
+    button {
+      border-radius: 50%;
+      padding: 1em;
+      font-size: 1.25em;
+    }
+  }
 }

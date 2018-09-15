@@ -13,7 +13,7 @@ import { Choice } from '../../providers/conversation/conversation';
 })
 export class FixedChoiceQuestionComponent {
 
-  @Input() title: string;
+  @Input() text: string;
 
   @Input() choices: Choice[] = [];
 

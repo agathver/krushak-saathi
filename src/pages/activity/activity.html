@@ -1,16 +1,29 @@
-<ion-content padding>
-  <div class="activity-frame" *ngFor="let activity of activities">
-    <div class="activity" [ngSwitch]="activity.type">
-      <div *ngSwitchCase="'question'">
-        <p ion-text color="primary" class="dialog">{{ activity.title }}</p>
+<ion-content>
+  <div class="page-wrapper">
+    <div class="activity-frame">
+      <div class="activity" [ngSwitch]="activity.type" *ngFor="let activity of activities">
+        <div *ngSwitchCase="'question'">
+          <p ion-text color="primary" class="dialog">{{ activity.text }}</p>
+        </div>
+        <div *ngSwitchCase="'user-response'">
+          <p ion-text color="gray" class="response">{{ activity.text }}</p>
+        </div>
+        <fixed-choice-question (reply)="callback($event)"
+         [text]="activity.text"
+         [choices]="activity.choices"
+          *ngSwitchCase="'choice'"></fixed-choice-question>
       </div>
-      <div *ngSwitchCase="'user-response'">
-        <p ion-text color="gray" class="response">{{ activity.title }}</p>
-      </div>
-      <fixed-choice-question (reply)="activity.callback($event)" [title]="activity.title" [choices]="activity.choices" *ngSwitchCase="'choice'"></fixed-choice-question>
     </div>
-  </div>
-  <div class="activity-input">
+    <div class="activity-footer">
+      <div>
 
+      </div>
+      <div class="input-wrapper">
+        <input [(ngModel)]="currentResponse" #ctrl="ngModel" type="text" placeholder="Type your reply here..." />
+        <button (click)="onSend()" ion-button round>
+          <ion-icon name="send"></ion-icon>
+        </button>
+      </div>
+    </div>
   </div>
 </ion-content>

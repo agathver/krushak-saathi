@@ -20,45 +20,77 @@ export class ActivityPage {
   activities: IPrompt[] = [];
   currentPrompt: IPrompt = null;
 
+  currentResponse: string;
+
   constructor(
-    private navCtrl:NavController,
-    private conversationCtrl:ConversationController,
-    private userProvider:UserProvider) {
+    private navCtrl: NavController,
+    private conversationCtrl: ConversationController,
+    private userProvider: UserProvider) {
   }
 
   ngOnInit() {
-    this.conversationCtrl.prompts$.subscribe(p => this.activities.push(p));
+    this.conversationCtrl.prompts$.subscribe(p => {
+      this.currentPrompt = p;
+      this.activities.push(p)
+    });
+
+    this.conversationCtrl.clear$.subscribe(() => this.activities = []);
   }
 
-  ionViewDidLoad() {
-    // start dialog
+  async ionViewDidLoad() {
+    const user = await this.userProvider.currentUser();
+    if (!user) {
+      this.loginDialog();
+    }
+  }
 
-    setTimeout(() => {
-      this.conversationCtrl.prompt('Hi!');
+  onSend() {
+    this.activities.push({
+      type: 'user-response',
+      text: this.currentResponse,
+    });
 
-      setTimeout(() => {
+    this.callback(this.currentResponse);
+
+    this.currentResponse = '';
+  }
+
+  callback(response: string) {
+    if (this.currentPrompt && this.currentPrompt.callback) {
+      this.currentPrompt.callback(response);
+    } else {
+      this.conversationCtrl.question(response);
+    }
+
+    this.currentPrompt = null;
+  }
+
+  loginDialog() {
+    this.conversationCtrl.prompt('Hi!');
+    setTimeout(() =>
       this.conversationCtrl.choice(
         'I am Laxmi, your Krushak Saathi.',
         [{
           title: "Let's start",
           value: 'start',
-        }],
-        _ => {
-          this.navCtrl.setRoot(LoginPage);
-        }
-      );
-      }, 1000);
-    }, 1000);
-
-
+        }])
+        .then(() => this.startLogin())
+      , 1000);
   }
 
-  onSend() {
-    if(this.currentPrompt) {
-      this.currentPrompt.callback('response');
-    } else {
-      this.conversationCtrl.question('response');
-    }
-  }
+  async startLogin() {
+    const name = await this.conversationCtrl.prompt('Please provide me your name');
+    const landSize = await this.conversationCtrl.prompt('What provides the size of your land (acres)?');
 
+    const cropsText = await this.conversationCtrl.prompt('What crops do you grow?')
+    const crops = cropsText.split(',').map(String.prototype.trim);
+
+    console.log(name, landSize, cropsText);
+
+    this.userProvider.register({
+      name,
+      landSize,
+      crops
+    })
+  }
 }
