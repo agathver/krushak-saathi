@@ -7,8 +7,6 @@ import { StatusBar } from "@ionic-native/status-bar";
 import { MyApp } from "./app.component";
 import { HomePage } from "../pages/home/home";
 import { LoginPage } from "../pages/login/login";
-import { Geolocation } from "@ionic-native/geolocation";
-import { NativeGeocoder } from "@ionic-native/native-geocoder";
 
 import { ActivityPage } from "../pages/activity/activity";
 import { UserProvider } from '../providers/user/user';
@@ -22,6 +20,12 @@ import { FixedChoiceQuestionComponent } from "../components/fixed-choice-questio
 import { ButtonGroupComponent } from "../components/button-group/button-group";
 import { CropSuggestionProvider } from '../providers/crop-suggestion/crop-suggestion';
 import { CropChecklistProvider } from '../providers/crop-checklist/crop-checklist';
+import { SeedSuggestionPage } from "../pages/seed-suggestion/seed-suggestion";
+import { SoilPreparationPage } from "../pages/soil-preparation/soil-preparation";
+import { SeedPlantingPage } from "../pages/seed-planting/seed-planting";
+import { MandiPricesPage } from "../pages/mandi-prices/mandi-prices";
+import { FertilizerRecommendationsPage } from "../pages/fertilizer-recommendations/fertilizer-recommendations";
+import { TimelinePage } from "../pages/timeline/timeline";
 
 
 @NgModule({
@@ -32,7 +36,13 @@ import { CropChecklistProvider } from '../providers/crop-checklist/crop-checklis
     LoginPage,
     CurrentWeatherComponent,
     ButtonGroupComponent,
-    FixedChoiceQuestionComponent
+    FixedChoiceQuestionComponent,
+    SeedSuggestionPage,
+    SoilPreparationPage,
+    SeedPlantingPage,
+    MandiPricesPage,
+    FertilizerRecommendationsPage,
+    TimelinePage
   ],
   imports: [
     BrowserModule,
@@ -40,21 +50,25 @@ import { CropChecklistProvider } from '../providers/crop-checklist/crop-checklis
       mode: 'ios'
     }),
     HttpClientModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     ActivityPage,
-    LoginPage
+    LoginPage,
+    SeedSuggestionPage,
+    SoilPreparationPage,
+    SeedPlantingPage,
+    MandiPricesPage,
+    FertilizerRecommendationsPage,
+    TimelinePage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    Geolocation,
     WeatherProvider,
-    NativeGeocoder,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     UserProvider,
     ConversationController,

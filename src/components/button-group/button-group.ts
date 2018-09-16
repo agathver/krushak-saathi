@@ -7,6 +7,8 @@ import { Choice } from '../../providers/conversation/conversation';
 })
 export class ButtonGroupComponent {
 
+  disabled = false;
+
   @Input() choices: Choice[];
 
   @Input() selectedChoice: string;
@@ -20,6 +22,7 @@ export class ButtonGroupComponent {
   }
 
   select(choice) {
+    this.disabled = true;
     this.selectedChoice = choice;
     this.changed.emit(choice);
   }

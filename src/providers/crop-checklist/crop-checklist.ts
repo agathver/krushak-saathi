@@ -31,6 +31,32 @@ export class CropChecklistProvider {
     }
   }
 
+  setSeedsProcured(action) {
+    return this.storage.set('seedsProcured', action);
+  }
+
+  isSeedsProcured() {
+    return this.storage.get('seedsProcured');
+  }
+
+  setSoilPrepared(action) {
+    return this.storage.set('soilPrepared', action);
+  }
+
+  isSoilPrepared() {
+    return this.storage.get("soilPrepared");
+  }
+
+  setCropPlanted(action) {
+    return this.storage.set('cropPlanted', action)
+  }
+
+  isCropPlanted() {
+    return this.storage.get('cropPlanted');
+  }
+
+  isCrop
+
   async addTask(task, date:Date) {
     const items:Item[] = await this.storage.get(KEY) || [];
     items.push({

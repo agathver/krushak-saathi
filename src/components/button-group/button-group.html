@@ -1,6 +1,6 @@
 <!-- Generated template for the ButtonGroupComponent component -->
-<div *ngFor="let choice of choices">
-  <button (click)="select(choice.value)" ion-button round [color]="color" [outline]="choice.value !== selectedChoice">
-    {{choice.title}}
-  </button>
+<div>
+    <button [disabled]="disabled" *ngFor="let choice of choices" (click)="select(choice.value)" ion-button round [color]="color" [outline]="choice.value !== selectedChoice">
+        {{choice.title}}
+      </button>
 </div>

@@ -1,12 +1,12 @@
 <ion-content>
   <div class="page-wrapper">
     <div class="activity-frame">
-      <div class="activity" [ngSwitch]="activity.type" *ngFor="let activity of activities">
+      <div [ngClass]="{'user-activity': activity.type === 'user-response'}" class="activity" [ngSwitch]="activity.type" *ngFor="let activity of activities">
         <div *ngSwitchCase="'question'">
           <p ion-text color="primary" class="dialog">{{ activity.text }}</p>
         </div>
         <div *ngSwitchCase="'user-response'">
-          <p ion-text color="gray" class="response">{{ activity.text }}</p>
+          <p ion-text color="gray" class="response dialog">{{ activity.text }}</p>
         </div>
         <fixed-choice-question (reply)="callback($event)"
          [text]="activity.text"

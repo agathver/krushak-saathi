@@ -5,6 +5,17 @@ page-activity {
     font-weight: 500;
   }
 
+  .activity {
+    display: flex;
+    justify-content: start;
+  }
+
+  .activity.user-activity {
+    justify-content: end;
+  }
+
+
+
   .user-response {
 
   }

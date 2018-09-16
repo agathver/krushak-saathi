@@ -1,6 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
+export interface Store {
+  name: string,
+  coords: {
+    lat: number,
+    lon: number
+  },
+  price: number
+}
+
 /*
   Generated class for the CropSuggestionProvider provider.
 
@@ -16,13 +25,13 @@ export class CropSuggestionProvider {
   cropSuggestions() {
     return [
       { id: 'rice', name: 'Rice' },
-      { id: 'wheat', name: 'Wheat'},
+      { id: 'wheat', name: 'Wheat' },
       { id: 'legumes', name: 'Legumes' },
       { id: 'Onion', name: 'Onion' }
     ];
   }
 
-  seedVendorSuggestion(crop) {
+  seedVendorSuggestion(crop): Store[] {
     return [
       {
         name: 'Shri Balaji Beej Bhandar',
